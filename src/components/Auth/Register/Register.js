@@ -5,24 +5,34 @@ import SocialMediaLogin from '../SocialMediaLogin/SocialMediaLogin';
 import './Register.css';
 
 const Register = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+
+        console.log(name, email, password);
+
+    }
     return (
         <div className='login-background'>
             <div className='container form-container'>
                 <h1 className='text-center py-4'>Please Register</h1>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Your Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" />
+                        <Form.Control type="text" placeholder="Enter name" name="name" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" name="email" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" name="password" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <p className='text-center'>Already Have An Account? <Link to='/login' >Please Login</Link></p>
