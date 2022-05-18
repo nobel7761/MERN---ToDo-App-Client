@@ -13,7 +13,7 @@ const Home = () => {
                 <div className='input-fields'>
                     <input type="text" name="title" placeholder='Enter Your Title' />
                     <textarea name="notes" placeholder='Type Your Notes Here' cols="30" rows="5"></textarea>
-                    <Button variant="outline-info">SUBMIT</Button>
+                    <Button variant="outline-info" className='mx-5'>ADD TASK</Button>
                 </div>
             </div>
             <div className='HR'></div>
