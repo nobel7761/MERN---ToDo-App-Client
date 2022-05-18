@@ -1,17 +1,43 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialMediaLogin from '../SocialMediaLogin/SocialMediaLogin';
 import './Register.css';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from "../../../firebase.init";
+import Loading from '../../Loading/Loading';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+
+    let displayError;
+    if (error) {
+        displayError = <h5 className='text-danger text-center '>{error?.message}</h5>
+    }
+    if (loading) {
+        return <Loading></Loading>
+    }
+
+    if (user) {
+        navigate('/home');
+    }
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-
+        createUserWithEmailAndPassword(email, password);
+        event.target.reset();
         console.log(name, email, password);
 
     }
@@ -20,6 +46,7 @@ const Register = () => {
             <div className='container form-container'>
                 <h1 className='text-center py-4'>Please Register</h1>
                 <Form onSubmit={handleSubmit}>
+                    {displayError}
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Your Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter name" name="name" />

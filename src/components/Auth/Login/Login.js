@@ -1,16 +1,40 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialMediaLogin from '../SocialMediaLogin/SocialMediaLogin';
 import './Login.css';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import Loading from '../../Loading/Loading';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    let displayError;
+    if (error) {
+        displayError = <h5 className='text-danger text-center '>{error?.message}</h5>
+    }
+    if (loading) {
+        return <Loading></Loading>
+    }
+
+    if (user) {
+        navigate('/home');
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
 
+        signInWithEmailAndPassword(email, password);
+        event.target.reset();
 
         console.log(email, password);
 
@@ -21,15 +45,16 @@ const Login = () => {
         <div className='register-background'>
             <div className='container form-container'>
                 <h1 className='text-center py-4'>Please Login</h1>
+                {displayError}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" name='email' />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" name='password' />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <p className='text-center'>Don't Have An Account? <Link to='/register' >Please Register</Link></p>
