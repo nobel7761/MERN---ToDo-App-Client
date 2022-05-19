@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import SocialMediaLogin from '../SocialMediaLogin/SocialMediaLogin';
 import './Register.css';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from "../../../firebase.init";
@@ -71,7 +70,6 @@ const Register = () => {
                     </div>
                 </Form>
 
-                <SocialMediaLogin></SocialMediaLogin>
             </div>
         </div>
     );

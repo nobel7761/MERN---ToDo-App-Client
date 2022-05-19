@@ -10,6 +10,14 @@
     border: 1px solid white !important
 }
 
+.card-container .h5 {
+    text-transform: uppercase;
+}
+
+.card-container p {
+    color: gray;
+}
+
 .icon {
     color: red;
     font-size: 15px;

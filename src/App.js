@@ -5,6 +5,7 @@ import Register from './components/Auth/Register/Register';
 import Home from './components/Pages/Home/Home';
 import RequireAuth from './components/Auth/RequireAuth/RequireAuth';
 
+
 function App() {
   return (
     <div>
@@ -22,6 +23,8 @@ function App() {
           </RequireAuth>
         }></Route>
       </Routes>
+
+
     </div>
   );
 }
