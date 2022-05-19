@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import Footer from '../../Shared/Footer/Footer';
 import NavMenu from '../../Shared/NavMenu/NavMenu';
@@ -30,7 +31,7 @@ const Home = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                alert("Note Added Successfully!")
+                toast("Note Added Successfully!");
             })
     }
 

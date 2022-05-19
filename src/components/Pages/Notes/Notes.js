@@ -5,6 +5,7 @@ import { Button, Card } from 'react-bootstrap';
 import './Notes.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import { toast } from 'react-toastify';
 
 const Notes = () => {
     const [user] = useAuthState(auth);
@@ -31,6 +32,7 @@ const Notes = () => {
                     if (data.deletedCount > 0) {
                         const restNotes = myNotes.filter(note => note._id !== id);
                         setMyNotes(restNotes);
+                        toast("Note Deleted!");
                     }
                 })
         }
@@ -52,7 +54,7 @@ const Notes = () => {
                 .then(response => response.json())
                 .then(data => {
                     console.log('success', data);
-
+                    toast("Marked as Completed");
                 })
         }
     }
