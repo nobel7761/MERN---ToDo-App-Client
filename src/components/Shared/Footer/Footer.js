@@ -1,9 +1,11 @@
 import React from 'react';
+import './Footer.css';
 
 const Footer = () => {
+    const year = new Date().getFullYear();
     return (
-        <div>
-            <h1>All Rights Reserved To Nobel</h1>
+        <div className='copyright-container'>
+            <p>Copyrights &copy; {year} MD. Habibur Rahaman Nobel. All rights reserved.</p>
         </div>
     );
 };

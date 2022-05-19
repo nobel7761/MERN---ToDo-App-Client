@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import Footer from '../../Shared/Footer/Footer';
 import NavMenu from '../../Shared/NavMenu/NavMenu';
 import Notes from '../Notes/Notes';
 import './Home.css';
@@ -19,7 +20,7 @@ const Home = () => {
 
         const note = { title: title, description: description, email: user.email, textDecoration: 'none' };
 
-        fetch('http://localhost:5000/notes', {
+        fetch('https://hidden-tor-11215.herokuapp.com/notes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -66,6 +67,8 @@ const Home = () => {
             <div className='HR'></div>
 
             <Notes></Notes>
+
+            <Footer></Footer>
         </div>
     );
 };

@@ -11,7 +11,7 @@ const Notes = () => {
     const [myNotes, setMyNotes] = useState([]);
     useEffect(() => {
         const email = user.email;
-        const url = `http://localhost:5000/user?email=${email}`;
+        const url = `https://hidden-tor-11215.herokuapp.com/user?email=${email}`;
 
         fetch(url)
             .then(res => res.json())
@@ -22,7 +22,7 @@ const Notes = () => {
     const removeNote = (id) => {
         const decision = window.confirm("Do You Really Want To Remove?");
         if (decision) {
-            const url = `http://localhost:5000/note/${id}`;
+            const url = `https://hidden-tor-11215.herokuapp.com/note/${id}`;
             fetch(url, {
                 method: 'DELETE',
             })
@@ -41,7 +41,7 @@ const Notes = () => {
         if (decision) {
             const updateInfo = { textDecoration: 'line-through' };
 
-            const url = `http://localhost:5000/updateDecoration/${id}`;
+            const url = `https://hidden-tor-11215.herokuapp.com/updateDecoration/${id}`;
             fetch(url, {
                 method: "PUT",
                 headers: {
